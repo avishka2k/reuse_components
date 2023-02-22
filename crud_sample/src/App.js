@@ -10,6 +10,8 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import PrivateRoute from "./PrivateRoute";
 import { Navigate } from "react-router-dom";
+import PasswordReset from "./pages/PasswordReset";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,6 +27,7 @@ function App() {
     <Router>
       <AuthProvider value={{ currentUser, timeActive, setTimeActive }}>
         <Routes>
+        <Route path='*' element={<NotFound />}/>
           <Route
             exact
             path="/"
@@ -34,6 +37,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/password_reset" element={<PasswordReset />} />
           <Route
             path="/login"
             element={
