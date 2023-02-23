@@ -40,7 +40,7 @@ function Register() {
         const userRef = doc(db, "users", user.uid);
         await setDoc(userRef, {
           email: user.email,
-          fullname: fullname,
+          displayName: fullname,
           // Add any additional user data fields here
         });
         // Send email verification and navigate to verify email page

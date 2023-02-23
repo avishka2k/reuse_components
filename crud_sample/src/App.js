@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import { Navigate } from "react-router-dom";
 import PasswordReset from "./pages/PasswordReset";
 import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -27,13 +28,22 @@ function App() {
     <Router>
       <AuthProvider value={{ currentUser, timeActive, setTimeActive }}>
         <Routes>
-        <Route path='*' element={<NotFound />}/>
+          <Route path="*" element={<NotFound />} />
+          <Route
+            exact
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
           <Route
             exact
             path="/"
             element={
               <PrivateRoute>
-                <Profile />
+                <Dashboard />
               </PrivateRoute>
             }
           />
